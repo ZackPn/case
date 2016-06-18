@@ -1,0 +1,22 @@
+var evnetUtil={
+//添加事件
+	addListener:function(element,type,listener){//type:事件类型(如click、mouseover&&不含on)，listener:事件处理程序
+		if(element.addEventListener){
+		element.addEventListener(type,listener,false);//使用冒泡事件
+		}else if(element.attachEvent){
+		element.attachEvent("on"+type,listener);
+		}else {
+		element["on"+type]=listener;
+		}
+	}
+//删除事件
+	removeListener:function(element,type,listener){
+		if(element.removeListener){
+		element.removeListener(type,listener,false);
+		}else if(element.detachEvent){
+		element.detachEvent("on"+type,listener);
+		}else {
+		element["on"+type]=null;
+		}
+	}
+}
